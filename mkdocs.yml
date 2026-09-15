@@ -1,0 +1,62 @@
+site_name: Quantum little guide
+site_description: Bitácora de aprendizaje sobre Quantum Computing y Error Correction
+site_author: Gabriela Marissa Mosquera Orellana
+
+theme:
+  name: material
+  features:
+    - toc.follow
+    - toc.integrate
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+
+plugins:
+  - search
+  - ipynb
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Inicio: index.md
+  
+  - Investigación:
+      - Investigación: investigacion/index.md
+      - Pregunta de investigación: investigacion/pregunta.md
+      - Descripción de la estancia: investigacion/estancia.md
+
+   - Preliminares:
+      - Some mathematical preliminaries: preliminares/index.md
+      - 0.1 Complex numbers: preliminares/01_complex_numbers.md
+      - 0.2 Euclidean vectors and vector spaces: preliminares/02_euclidean_vectors.md
+      - 0.3 Bras and kets: preliminares/03_bras_and_kets.md
+      - 0.4 Daggers: preliminares/04_daggers.md
+      - 0.5 Geometry: preliminares/05_geometry.md
+      - 0.6 Operators: preliminares/06_operators.md
+      - 0.7 Eigenvalues and eigenvectors: preliminares/07_eigenvalues.md
+      - 0.8 Outer products: preliminares/08_outer_products.md
+      - 0.9 The trace: preliminares/09_trace.md
+      - 0.10 Some useful identities: preliminares/10_identities.md
+      - 0.11 Probabilities: preliminares/11_probabilities.md
+     
+  - Metodología:
+      - Metodología: metodologia/index.md
+
+  - Capítulos:
+      - Capítulos: capitulos/index.md
+
+  - Resultados:
+      - Resultados: resultados/index.md
+
+  - Conclusiones:
+      - Conclusiones: conclusiones/index.md
+
+  - Recursos:
+      - Recursos: recursos/index.md
+
+  - Glosario: glosario.md
