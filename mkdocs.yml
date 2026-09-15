@@ -13,7 +13,7 @@ theme:
 
 plugins:
   - search
-  - ipynb
+  - mkdocs-jupyter
 
 markdown_extensions:
   - pymdownx.arithmatex:
@@ -30,7 +30,7 @@ nav:
       - Pregunta de investigación: investigacion/pregunta.md
       - Descripción de la estancia: investigacion/estancia.md
 
-   - Preliminares:
+  - Preliminares:
       - Some mathematical preliminaries: preliminares/index.md
       - 0.1 Complex numbers: preliminares/01_complex_numbers.md
       - 0.2 Euclidean vectors and vector spaces: preliminares/02_euclidean_vectors.md
@@ -43,7 +43,7 @@ nav:
       - 0.9 The trace: preliminares/09_trace.md
       - 0.10 Some useful identities: preliminares/10_identities.md
       - 0.11 Probabilities: preliminares/11_probabilities.md
-     
+
   - Metodología:
       - Metodología: metodologia/index.md
 
