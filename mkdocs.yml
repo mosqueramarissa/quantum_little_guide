@@ -47,7 +47,6 @@ nav:
       - Metodología: metodologia/index.md
  
   - Capítulos:
-      - Capítulos: capitulos/index.md
       - 1 Qubits, superposición y entrelazamiento: capitulos/1_qubits.md
       - 2 Compuertas cuánticas y la fragilidad de la información: capitulos/2_quantum_gates.md
       - 3 Códigos clásicos y álgebra lineal binaria: capitulos/3_classic_codes.md
