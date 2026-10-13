@@ -24,10 +24,12 @@ extra_javascript:
 
 nav:
   - Inicio: index.md
+ 
   - Investigación:
       - Investigación: investigacion/index.md
       - Pregunta de investigación: investigacion/pregunta.md
       - Descripción de la estancia: investigacion/estancia.md
+ 
   - Preliminares:
       - 0.1 Complex numbers: preliminares/01_complex_numbers.md
       - 0.2 Euclidean vectors and vector spaces: preliminares/02_euclidean_vectors.md
@@ -40,9 +42,10 @@ nav:
       - 0.9 The trace: preliminares/09_trace.md
       - 0.10 Some useful identities: preliminares/10_identities.md
       - 0.11 Probabilities: preliminares/11_probabilities.md
+ 
   - Metodología:
       - Metodología: metodologia/index.md
-      - 
+ 
   - Capítulos:
       - Capítulos: capitulos/index.md
       - 1 Qubits, superposición y entrelazamiento: capitulos/1_qubits.md
@@ -56,10 +59,14 @@ nav:
       - 9 Embeddings heurísticos, Estrategias de colocación de qubits: capitulos/9_heuristics_embeddings.md
       - 10 Enrutamiento mediante compuertas SWAP y la sobrecarga de conectividad: capitulos/10_SWAP_gates.md
       - 11 Propagación de errores en simulaciones y análisis final: docs/capitulos/11_error_in_simulations.md
+ 
   - Resultados:
       - Resultados: resultados/index.md
+ 
   - Conclusiones:
       - Conclusiones: conclusiones/index.md
+ 
   - Recursos:
       - Recursos: recursos/index.md
+  
   - Glosario: glosario.md
