@@ -1,0 +1,1831 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Bitácora de aprendizaje sobre Quantum Computing y Error Correction">
+      
+      
+        <meta name="author" content="Gabriela Marissa Mosquera Orellana">
+      
+      
+      
+        <link rel="prev" href="../6_tanner_graphs/">
+      
+      
+        <link rel="next" href="../8_physics_interaction_graphs/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>7 La familia de códigos qLDPC y el producto de hipergrafos - Quantum little guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#capitulo-7-la-familia-de-codigos-qldpc-y-el-producto-de-hipergrafos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Quantum little guide" class="md-header__button md-logo" aria-label="Quantum little guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Quantum little guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              7 La familia de códigos qLDPC y el producto de hipergrafos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Quantum little guide" class="md-nav__button md-logo" aria-label="Quantum little guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Quantum little guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Investigación
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Investigación
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../investigacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Investigación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../investigacion/pregunta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pregunta de investigación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../investigacion/estancia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de la estancia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preliminares
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Preliminares
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/01_complex_numbers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.1 Complex numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/02_euclidean_vectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.2 Euclidean vectors and vector spaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/03_bras_and_kets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.3 Bras and kets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/04_daggers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.4 Daggers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/05_geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.5 Geometry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/06_operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.6 Operators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/07_eigenvalues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.7 Eigenvalues and eigenvectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/08_outer_products/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.8 Outer products
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/09_trace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.9 The trace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/10_identities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.10 Some useful identities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/11_probabilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.11 Probabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodología
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Metodología
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metodologia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodología
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capítulos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Capítulos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_qubits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 Qubits, superposición y entrelazamiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_quantum_gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 Compuertas cuánticas y la fragilidad de la información
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_classic_codes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Códigos clásicos y álgebra lineal binaria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_stabilizers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 El formalismo estabilizador y la extracción de síndromes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_css_codes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 Códigos CSS y la generación de códigos de superficie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_tanner_graphs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 Grafos de Tanner y la topología de la incidencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 La familia de códigos qLDPC y el producto de hipergrafos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 La familia de códigos qLDPC y el producto de hipergrafos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#71-el-reto-de-la-conmutatividad-en-qldpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 El Reto de la Conmutatividad en qLDPC
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#72-codigos-tipo-bicycle-y-generalized-bicycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Códigos tipo Bicycle y Generalized Bicycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#73-la-construccion-del-producto-de-hipergrafos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 La Construcción del Producto de Hipergrafos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3 La Construcción del Producto de Hipergrafos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#731-definicion-de-las-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3.1 Definición de las Matrices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#732-demostracion-formal-de-ortogonalidad-css" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3.2 Demostración Formal de Ortogonalidad CSS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#74-desafios-fisicos-qldpc-vs-topologia-del-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Desafíos Físicos: qLDPC vs Topología del Hardware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practica-interactiva-generador-del-producto-de-hipergrafos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica Interactiva: Generador del Producto de Hipergrafos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Práctica Interactiva: Generador del Producto de Hipergrafos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias bibliográficas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8_physics_interaction_graphs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 Grafos de interacción física y arquitecturas de hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9_heuristics_embeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9 Embeddings heurísticos, Estrategias de colocación de qubits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_SWAP_gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Enrutamiento mediante compuertas SWAP y la sobrecarga de conectividad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/capitulos/11_error_in_simulations.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Propagación de errores en simulaciones y análisis final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resultados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resultados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conclusiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conclusiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conclusiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conclusiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Recursos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="capitulo-7-la-familia-de-codigos-qldpc-y-el-producto-de-hipergrafos">Capítulo 7: La Familia de Códigos qLDPC y el Producto de Hipergrafos</h1>
+<p>Hasta ahora hemos estudiado el código de superficie, el cual es elegante por su topología plana y conectividad estrictamente local. Sin embargo, sufre de una limitación asintótica severa: para codificar un solo qubit lógico con mayor protección (aumentar la distancia <span class="arithmatex">\(d\)</span>), necesitamos crecer la cuadrícula cuadráticamente, es decir, el número de qubits físicos <span class="arithmatex">\(n\)</span> escala como <span class="arithmatex">\(O(d^2)\)</span>. En términos matemáticos, la tasa de codificación <span class="arithmatex">\(k/n\)</span> tiende a cero a medida que el sistema crece.</p>
+<p>Para construir computadoras cuánticas verdaderamente escalables sin requerir millones de qubits físicos, la teoría de la información cuántica ha centrado sus esfuerzos en los <strong>códigos cuánticos de comprobación de paridad de baja densidad (qLDPC)</strong>. Esta familia busca lograr una tasa de codificación constante (<span class="arithmatex">\(k/n \to c &gt; 0\)</span>) y una distancia que escale favorablemente, manteniendo un límite superior en el número de comprobaciones en las que participa cualquier qubit individual (grado acotado en el Grafo de Tanner)[cite: 2, 3].</p>
+<h2 id="71-el-reto-de-la-conmutatividad-en-qldpc">7.1 El Reto de la Conmutatividad en qLDPC</h2>
+<p>En la teoría de códigos clásicos, la adopción de matrices LDPC aleatorias o pseudoaleatorias revolucionó las telecomunicaciones. Sin embargo, en el dominio cuántico, no podemos simplemente tomar dos matrices LDPC clásicas aleatorias <span class="arithmatex">\(H_X\)</span> y <span class="arithmatex">\(H_Z\)</span>. </p>
+<p>Como vimos en el Capítulo 16, la construcción CSS impone una restricción rígida: el espacio fila de <span class="arithmatex">\(H_X\)</span> y el espacio fila de <span class="arithmatex">\(H_Z\)</span> deben ser ortogonales sobre el campo finito <span class="arithmatex">\(\mathbb{F}_2\)</span>. Es decir, <span class="arithmatex">\(H_X H_Z^T = 0 \pmod 2\)</span>. Encontrar matrices dispersas (LDPC) que satisfagan simultáneamente una alta tasa de codificación, una gran distancia mínima y esta estricta condición de ortogonalidad geométrica es un problema combinatorio formidable.</p>
+<p>Para resolver esto, utilizamos construcciones algebraicas estructuradas. Las dos familias de qLDPC más relevantes para implementaciones a pequeña escala son los códigos tipo <em>Bicycle</em> y el Producto de Hipergrafos[cite: 2].</p>
+<h2 id="72-codigos-tipo-bicycle-y-generalized-bicycle">7.2 Códigos tipo <em>Bicycle</em> y <em>Generalized Bicycle</em></h2>
+<p>Una forma heurística de garantizar la ortogonalidad es utilizar matrices circulantes (matrices cuadradas donde cada fila es un desplazamiento cíclico de la anterior). </p>
+<p>Supongamos que tenemos dos matrices circulantes que conmutan, <span class="arithmatex">\(A\)</span> y <span class="arithmatex">\(B\)</span>, con elementos en <span class="arithmatex">\(\mathbb{F}_2\)</span>. Podemos definir las matrices de comprobación de paridad CSS de la siguiente manera:
+$<span class="arithmatex">\(H_X = [A \mid B]\)</span>$
+$<span class="arithmatex">\(H_Z = [B^T \mid A^T]\)</span>$</p>
+<p>Demostremos matemáticamente la conmutatividad:
+$<span class="arithmatex">\(H_X H_Z^T = [A \mid B] \begin{bmatrix} B \\ A \end{bmatrix} = AB + BA \pmod 2\)</span>$
+Dado que <span class="arithmatex">\(A\)</span> y <span class="arithmatex">\(B\)</span> son circulantes, conmutan (<span class="arithmatex">\(AB = BA\)</span>). Y puesto que estamos en aritmética módulo 2, la suma de dos elementos idénticos es cero (<span class="arithmatex">\(X \oplus X = 0\)</span>). Por lo tanto:
+$<span class="arithmatex">\(AB + BA = 2AB \equiv 0 \pmod 2\)</span>$
+Esta estructura simple permite encontrar códigos cuánticos funcionales mediante la búsqueda de polinomios cíclicos apropiados, generando pequeños códigos <em>bicycle</em> útiles para experimentos tempranos en simuladores de ruido[cite: 2].</p>
+<h2 id="73-la-construccion-del-producto-de-hipergrafos">7.3 La Construcción del Producto de Hipergrafos</h2>
+<p>El avance más trascendental en la teoría qLDPC moderna fue la invención de la construcción del producto de hipergrafos por Tillich y Zémor. Este método es brillante porque proporciona una receta sistemática para tomar <strong>cualquier par de códigos clásicos</strong> y combinarlos en un código cuántico CSS válido[cite: 3]. Si los códigos clásicos originales son LDPC, el código cuántico resultante está garantizado de ser qLDPC[cite: 3].</p>
+<h3 id="731-definicion-de-las-matrices">7.3.1 Definición de las Matrices</h3>
+<p>Sean dos códigos clásicos <span class="arithmatex">\(C_1\)</span> y <span class="arithmatex">\(C_2\)</span> (no necesariamente idénticos ni cuadrados) definidos por sus matrices de comprobación de paridad:
+*   <span class="arithmatex">\(H_1\)</span>: matriz de tamaño <span class="arithmatex">\(r_1 \times n_1\)</span>
+*   <span class="arithmatex">\(H_2\)</span>: matriz de tamaño <span class="arithmatex">\(r_2 \times n_2\)</span></p>
+<p>El producto de hipergrafos define un código cuántico en un espacio de Hilbert de <span class="arithmatex">\(n = n_1 n_2 + r_1 r_2\)</span> qubits físicos. Las matrices de paridad del código CSS resultante se construyen utilizando el producto tensorial de Kronecker (<span class="arithmatex">\(\otimes\)</span>) y matrices identidad (<span class="arithmatex">\(I\)</span>):</p>
+<div class="arithmatex">\[H_X = [ H_1 \otimes I_{n_2} \mid I_{r_1} \otimes H_2^T ]$$
+$$H_Z = [ I_{n_1} \otimes H_2 \mid H_1^T \otimes I_{r_2} ]\]</div>
+<h3 id="732-demostracion-formal-de-ortogonalidad-css">7.3.2 Demostración Formal de Ortogonalidad CSS</h3>
+<p>Para verificar que esta construcción engendra un código cuántico válido, debemos demostrar rigurosamente que <span class="arithmatex">\(H_X H_Z^T = 0 \pmod 2\)</span>. </p>
+<p>Recordemos dos propiedades fundamentales del producto de Kronecker para matrices:
+1.  <strong>Transpuesta:</strong> <span class="arithmatex">\((A \otimes B)^T = A^T \otimes B^T\)</span>
+2.  <strong>Producto mixto:</strong> <span class="arithmatex">\((A \otimes B)(C \otimes D) = (AC) \otimes (BD)\)</span> (siempre que las dimensiones internas coincidan).</p>
+<p>Procedemos a evaluar el producto <span class="arithmatex">\(H_X H_Z^T\)</span>:</p>
+<ol>
+<li>
+<p>Primero, transponemos <span class="arithmatex">\(H_Z\)</span>:
+    $<span class="arithmatex">\(H_Z^T = \begin{bmatrix} (I_{n_1} \otimes H_2)^T \\ (H_1^T \otimes I_{r_2})^T \end{bmatrix} = \begin{bmatrix} I_{n_1}^T \otimes H_2^T \\ (H_1^T)^T \otimes I_{r_2}^T \end{bmatrix} = \begin{bmatrix} I_{n_1} \otimes H_2^T \\ H_1 \otimes I_{r_2} \end{bmatrix}\)</span>$</p>
+</li>
+<li>
+<p>Ahora multiplicamos <span class="arithmatex">\(H_X\)</span> por <span class="arithmatex">\(H_Z^T\)</span> realizando la multiplicación de matrices por bloques:
+    $<span class="arithmatex">\(H_X H_Z^T = [ H_1 \otimes I_{n_2} \mid I_{r_1} \otimes H_2^T ] \begin{bmatrix} I_{n_1} \otimes H_2^T \\ H_1 \otimes I_{r_2} \end{bmatrix}\)</span>$
+    $<span class="arithmatex">\(H_X H_Z^T = (H_1 \otimes I_{n_2})(I_{n_1} \otimes H_2^T) + (I_{r_1} \otimes H_2^T)(H_1 \otimes I_{r_2})\)</span>$</p>
+</li>
+<li>
+<p>Aplicamos la propiedad del producto mixto término a término:</p>
+<ul>
+<li>Primer término: <span class="arithmatex">\((H_1 I_{n_1}) \otimes (I_{n_2} H_2^T) = H_1 \otimes H_2^T\)</span></li>
+<li>Segundo término: <span class="arithmatex">\((I_{r_1} H_1) \otimes (H_2^T I_{r_2}) = H_1 \otimes H_2^T\)</span></li>
+</ul>
+</li>
+<li>
+<p>Sumamos los términos resultantes:
+    $<span class="arithmatex">\(H_X H_Z^T = (H_1 \otimes H_2^T) + (H_1 \otimes H_2^T)\)</span>$</p>
+</li>
+</ol>
+<p>Dado que estamos operando sobre el campo finito <span class="arithmatex">\(\mathbb{F}_2\)</span>, la suma de cualquier matriz consigo misma es la matriz nula:
+$<span class="arithmatex">\((H_1 \otimes H_2^T) \oplus (H_1 \otimes H_2^T) \equiv 0 \pmod 2\)</span>$</p>
+<p>Esta demostración prueba que el producto de hipergrafos de Tillich y Zémor garantiza algorítmicamente la condición de conmutatividad necesaria para el formalismo estabilizador, sin importar qué matrices <span class="arithmatex">\(H_1\)</span> y <span class="arithmatex">\(H_2\)</span> se hayan elegido originalmente[cite: 3].</p>
+<h2 id="74-desafios-fisicos-qldpc-vs-topologia-del-hardware">7.4 Desafíos Físicos: qLDPC vs Topología del Hardware</h2>
+<p>Aunque el producto de hipergrafos resuelve el problema de diseño lógico, introduce un desafío formidable en la física experimental. Trabajos recientes demuestran que ciertos códigos qLDPC de alta tasa tienen grafos de Tanner con requerimientos de conectividad no planos (por ejemplo, grado seis o interacciones de largo alcance)[cite: 2]. </p>
+<p>Esta desconexión entre la topología del Grafo de Tanner (incidencia lógica) y el grafo de acoplamiento del hardware (físico, a menudo restringido a conectividad de grado 3 o 4 en sistemas superconductores de 2D) fuerza el uso agresivo de compuertas SWAP[cite: 2]. Como veremos, un Grafo de Tanner con grosor dos podría descomponerse en subgrafos planares, sugiriendo arquitecturas de hardware multicapa para aliviar el enrutamiento[cite: 2], lo que representa la base de las heurísticas de colocación de qubits que compararemos.</p>
+<hr />
+<h2 id="practica-interactiva-generador-del-producto-de-hipergrafos">Práctica Interactiva: Generador del Producto de Hipergrafos</h2>
+<p>Para materializar las metas de septiembre[cite: 2], implementaremos un módulo para generar códigos pequeños mediante el producto de hipergrafos. El siguiente <em>script</em> toma dos códigos de repetición simples clásicos y construye el código cuántico resultante, verificando numéricamente la demostración matricial que acabamos de realizar.</p>
+<p>Copia este código y experimenta cambiando las matrices <span class="arithmatex">\(H_1\)</span> y <span class="arithmatex">\(H_2\)</span>.</p>
+<pre><code class="language-python">import numpy as np
+
+def hipergrafo_producto(H1, H2):
+    &quot;&quot;&quot;
+    Construye las matrices CSS (H_X, H_Z) usando el Producto de Hipergrafos
+    a partir de dos matrices clásicas H1 y H2.
+    &quot;&quot;&quot;
+    r1, n1 = H1.shape
+    r2, n2 = H2.shape
+
+    # Matrices identidad necesarias
+    I_n1 = np.eye(n1, dtype=int)
+    I_n2 = np.eye(n2, dtype=int)
+    I_r1 = np.eye(r1, dtype=int)
+    I_r2 = np.eye(r2, dtype=int)
+
+    # Construcción de H_X = [ H1 ⊗ I_n2 | I_r1 ⊗ H2^T ]
+    H_X_left = np.kron(H1, I_n2)
+    H_X_right = np.kron(I_r1, H2.T)
+    H_X = np.hstack((H_X_left, H_X_right)) % 2
+
+    # Construcción de H_Z = [ I_n1 ⊗ H2 | H1^T ⊗ I_r2 ]
+    H_Z_left = np.kron(I_n1, H2)
+    H_Z_right = np.kron(H1.T, I_r2)
+    H_Z = np.hstack((H_Z_left, H_Z_right)) % 2
+
+    return H_X, H_Z
+
+# --- Ejemplo de Uso ---
+# Usaremos un código clásico de repetición [3, 1, 3] para H1 y H2
+H_rep = np.array([
+    [1, 1, 0],
+    [0, 1, 1]
+])
+
+print(&quot;Matriz clásica H1 y H2 (Código de repetición):&quot;)
+print(H_rep)
+print(&quot;-&quot; * 40)
+
+H_X, H_Z = hipergrafo_producto(H_rep, H_rep)
+
+n_qubits = H_X.shape[1]
+print(f&quot;Número total de qubits físicos del nuevo código: {n_qubits}&quot;)
+print(f&quot;Dimensión de H_X: {H_X.shape}&quot;)
+print(f&quot;Dimensión de H_Z: {H_Z.shape}&quot;)
+print(&quot;-&quot; * 40)
+
+# Verificación de ortogonalidad H_X * H_Z^T = 0 mod 2
+conmutatividad = np.dot(H_X, H_Z.T) % 2
+es_valido = np.all(conmutatividad == 0)
+
+if es_valido:
+    print(&quot;[ÉXITO] H_X * H_Z^T (mod 2) = 0.&quot;)
+    print(&quot;La construcción matemática generó un código CSS válido.&quot;)
+else:
+    print(&quot;[ERROR] Las matrices no conmutan.&quot;)
+</code></pre>
+<h3 id="referencias-bibliograficas">Referencias bibliográficas</h3>
+<p>Tillich, J.-P., &amp; Zémor, G. (2014). "Quantum LDPC codes with positive rate and minimum distance proportional to the square root of the blocklength", IEEE Transactions on Information Theory, 60, 1193–1202.
+Breuckmann, N. P., &amp; Eberhardt, J. N. (2021). "Quantum low-density parity-check codes", PRX Quantum, 2, 040101.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.follow", "toc.integrate", "navigation.sections", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

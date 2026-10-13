@@ -1,0 +1,1772 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Bitácora de aprendizaje sobre Quantum Computing y Error Correction">
+      
+      
+        <meta name="author" content="Gabriela Marissa Mosquera Orellana">
+      
+      
+      
+        <link rel="prev" href="../4_stabilizers/">
+      
+      
+        <link rel="next" href="../6_tanner_graphs/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>5 Códigos CSS y la generación de códigos de superficie - Quantum little guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#capitulo-5-codigos-css-y-la-generacion-de-codigos-de-superficie" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Quantum little guide" class="md-header__button md-logo" aria-label="Quantum little guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Quantum little guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5 Códigos CSS y la generación de códigos de superficie
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Quantum little guide" class="md-nav__button md-logo" aria-label="Quantum little guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Quantum little guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Investigación
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Investigación
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../investigacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Investigación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../investigacion/pregunta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pregunta de investigación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../investigacion/estancia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Descripción de la estancia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preliminares
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Preliminares
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/01_complex_numbers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.1 Complex numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/02_euclidean_vectors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.2 Euclidean vectors and vector spaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/03_bras_and_kets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.3 Bras and kets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/04_daggers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.4 Daggers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/05_geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.5 Geometry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/06_operators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.6 Operators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/07_eigenvalues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.7 Eigenvalues and eigenvectors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/08_outer_products/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.8 Outer products
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/09_trace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.9 The trace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/10_identities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.10 Some useful identities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preliminares/11_probabilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0.11 Probabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodología
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Metodología
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metodologia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metodología
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capítulos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Capítulos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_qubits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 Qubits, superposición y entrelazamiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_quantum_gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 Compuertas cuánticas y la fragilidad de la información
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_classic_codes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Códigos clásicos y álgebra lineal binaria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_stabilizers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 El formalismo estabilizador y la extracción de síndromes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 Códigos CSS y la generación de códigos de superficie
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 Códigos CSS y la generación de códigos de superficie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-la-construccion-calderbank-shor-steane-css" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 La Construcción Calderbank-Shor-Steane (CSS)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-el-codigo-toroidal-y-los-codigos-de-superficie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 El Código Toroidal y los Códigos de Superficie
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 El Código Toroidal y los Códigos de Superficie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-interpretacion-homologica-de-los-operadores-logicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.1 Interpretación Homológica de los Operadores Lógicos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-deteccion-local-de-errores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.2 Detección Local de Errores
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practica-interactiva-construccion-matricial-de-un-codigo-css-y-generacion-de-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica Interactiva: Construcción Matricial de un Código CSS y Generación de Parámetros
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Práctica Interactiva: Construcción Matricial de un Código CSS y Generación de Parámetros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias bibliográficas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_tanner_graphs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 Grafos de Tanner y la topología de la incidencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_family_of_qLDPC_codes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 La familia de códigos qLDPC y el producto de hipergrafos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8_physics_interaction_graphs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 Grafos de interacción física y arquitecturas de hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9_heuristics_embeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9 Embeddings heurísticos, Estrategias de colocación de qubits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_SWAP_gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Enrutamiento mediante compuertas SWAP y la sobrecarga de conectividad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/capitulos/11_error_in_simulations.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Propagación de errores en simulaciones y análisis final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resultados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resultados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conclusiones
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conclusiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conclusiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conclusiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Recursos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glosario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="capitulo-5-codigos-css-y-la-generacion-de-codigos-de-superficie">Capítulo 5: Códigos CSS y la Generación de Códigos de Superficie</h1>
+<p>Una vez dominados los códigos clásicos sobre <span class="arithmatex">\(\mathbb{F}_2\)</span> y el formalismo de estabilizadores, nos enfrentamos al desafío de diseñar códigos cuánticos prácticos. La familia de códigos CSS (Calderbank-Shor-Steane) representa el puente fundamental entre la teoría clásica de corrección de errores y el mundo cuántico. Al especializar los códigos CSS en una topología bidimensional, obtenemos los códigos de superficie, los cuales son la arquitectura principal para la tolerancia a fallas en la mayoría de los procesadores cuánticos actuales debido a su requerimiento de conectividad estrictamente local.</p>
+<h2 id="51-la-construccion-calderbank-shor-steane-css">5.1 La Construcción Calderbank-Shor-Steane (CSS)</h2>
+<p>La genialidad de la construcción CSS radica en utilizar dos códigos clásicos para corregir errores cuánticos: uno para corregir errores de bit (operadores de Pauli <span class="arithmatex">\(X\)</span>) y otro para corregir errores de fase (operadores de Pauli <span class="arithmatex">\(Z\)</span>). </p>
+<p>Supongamos que tenemos dos códigos lineales clásicos, <span class="arithmatex">\(C_X\)</span> y <span class="arithmatex">\(C_Z\)</span>, definidos por sus respectivas matrices de comprobación de paridad, <span class="arithmatex">\(H_X\)</span> y <span class="arithmatex">\(H_Z\)</span>. Para que estas matrices definan un código estabilizador cuántico válido, los operadores <span class="arithmatex">\(X\)</span> y <span class="arithmatex">\(Z\)</span> generados a partir de las filas de <span class="arithmatex">\(H_X\)</span> y <span class="arithmatex">\(H_Z\)</span> deben conmutar[cite: 3]. </p>
+<p>Como establecimos en el formalismo de Pauli, dos operadores formados por productos tensoriales de <span class="arithmatex">\(X\)</span> y <span class="arithmatex">\(Z\)</span> conmutan si y solo si coinciden (es decir, tienen soporte simultáneo) en un número <strong>par</strong> de qubits. Matemáticamente, esto exige que el espacio fila de <span class="arithmatex">\(H_X\)</span> sea ortogonal al espacio fila de <span class="arithmatex">\(H_Z\)</span> sobre <span class="arithmatex">\(\mathbb{F}_2\)</span>. La condición estricta es:
+$<span class="arithmatex">\(H_X H_Z^T = 0 \pmod 2\)</span>$</p>
+<p>Si esta condición se cumple, podemos definir el grupo estabilizador <span class="arithmatex">\(S\)</span> generándolo a partir de:
+*   Las filas de <span class="arithmatex">\(H_X\)</span>, donde cada <span class="arithmatex">\(1\)</span> se reemplaza por un operador <span class="arithmatex">\(X\)</span>.
+*   Las filas de <span class="arithmatex">\(H_Z\)</span>, donde cada <span class="arithmatex">\(1\)</span> se reemplaza por un operador <span class="arithmatex">\(Z\)</span>.</p>
+<p>Los síndromes se extraen midiendo estos generadores. Un síndrome de <span class="arithmatex">\(X\)</span> (obtenido midiendo <span class="arithmatex">\(H_Z\)</span>) detecta errores tipo <span class="arithmatex">\(X\)</span>, y un síndrome de <span class="arithmatex">\(Z\)</span> (obtenido midiendo <span class="arithmatex">\(H_X\)</span>) detecta errores tipo <span class="arithmatex">\(Z\)</span>.</p>
+<h2 id="52-el-codigo-toroidal-y-los-codigos-de-superficie">5.2 El Código Toroidal y los Códigos de Superficie</h2>
+<p>Mientras que un código CSS arbitrario puede requerir que interactúen qubits distantes (lo cual es físicamente prohibitivo en arquitecturas como circuitos superconductores), Alexei Kitaev propuso asociar los qubits a las celdas geométricas de una red espacial, creando memorias cuánticas topológicas[cite: 3]. </p>
+<p>En el <strong>código toroidal</strong> original (y su versión plana, el <strong>código de superficie</strong>), los qubits físicos se ubican en las aristas de una cuadrícula bidimensional[cite: 3]. Los estabilizadores se asocian a las características geométricas de la red:
+*   <strong>Estabilizadores de vértice (Stars / <span class="arithmatex">\(A_v\)</span>):</strong> Operadores <span class="arithmatex">\(X^{\otimes 4}\)</span> aplicados a los 4 qubits que inciden en un vértice <span class="arithmatex">\(v\)</span>.
+*   <strong>Estabilizadores de cara (Plaquettes / <span class="arithmatex">\(B_p\)</span>):</strong> Operadores <span class="arithmatex">\(Z^{\otimes 4}\)</span> aplicados a los 4 qubits que bordean una cara o plaquette <span class="arithmatex">\(p\)</span>[cite: 3].</p>
+<p>La conmutatividad (<span class="arithmatex">\(H_X H_Z^T = 0\)</span>) está garantizada geométricamente: un vértice y una cara adyacente siempre comparten exactamente dos aristas (dos qubits), por lo que el número de intersecciones es par y los operadores <span class="arithmatex">\(A_v\)</span> y <span class="arithmatex">\(B_p\)</span> conmutan.</p>
+<h3 id="521-interpretacion-homologica-de-los-operadores-logicos">5.2.1 Interpretación Homológica de los Operadores Lógicos</h3>
+<p>La protección de la información en estos códigos es de naturaleza topológica[cite: 3]. Los estados lógicos no se almacenan en qubits individuales, sino en propiedades globales de la red. 
+Los operadores lógicos <span class="arithmatex">\(\bar{X}\)</span> y <span class="arithmatex">\(\bar{Z}\)</span> corresponden a cadenas de operadores <span class="arithmatex">\(X\)</span> y <span class="arithmatex">\(Z\)</span> que atraviesan la cuadrícula de un extremo al otro (o envuelven el toro). Estas son cadenas de operadores que conmutan con todos los estabilizadores (ya que tienen un número par de intersecciones o no se cruzan), pero que no pueden ser generadas por el producto de estabilizadores individuales.</p>
+<p>En términos de homología de grafos:
+*   Los estabilizadores representan fronteras triviales (ciclos contraíbles)[cite: 3].
+*   Los operadores lógicos representan ciclos no triviales que envuelven la topología del colector[cite: 3].</p>
+<h3 id="522-deteccion-local-de-errores">5.2.2 Detección Local de Errores</h3>
+<p>Por qué los errores locales son detectados localmente es una consecuencia directa de esta topología[cite: 3]. Cuando ocurre un error (por ejemplo, una cadena de errores <span class="arithmatex">\(X\)</span> en qubits adyacentes), los estabilizadores en los extremos de la cadena anticonmutarán con el error, provocando un resultado de medición de <span class="arithmatex">\(-1\)</span> (un "defecto" o "anyón")[cite: 3]. Los estabilizadores a lo largo de la cadena (en el medio) compartirán dos qubits con el error, por lo que conmutarán y arrojarán <span class="arithmatex">\(+1\)</span>. Por lo tanto, sin importar qué tan larga sea la cadena de errores, el síndrome solo "ilumina" los extremos de la cadena, permitiendo que un algoritmo de emparejamiento (como Minimum Weight Perfect Matching) deduzca la corrección más probable emparejando los defectos observados[cite: 3].</p>
+<p>La distancia del código <span class="arithmatex">\(d\)</span> es la longitud de la cadena lógica más corta que atraviesa la cuadrícula, que escala linealmente con la longitud <span class="arithmatex">\(L\)</span> del parche geométrico (<span class="arithmatex">\(d = L\)</span>).</p>
+<hr />
+<h2 id="practica-interactiva-construccion-matricial-de-un-codigo-css-y-generacion-de-parametros">Práctica Interactiva: Construcción Matricial de un Código CSS y Generación de Parámetros</h2>
+<p>El primer paso explícito de tu trabajo de agosto requiere generar un código de superficie pequeño y reproducir sus parámetros básicos. En lugar de usar topologías complejas inmediatamente, demostraremos el núcleo del diseño CSS verificando computacionalmente la condición de ortogonalidad <span class="arithmatex">\(H_X H_Z^T = 0 \pmod 2\)</span>.</p>
+<p>El siguiente código implementa el código CSS más pequeño posible capaz de corregir un error arbitrario: el código de Steane <span class="arithmatex">\(\llbracket 7, 1, 3 \rrbracket\)</span>. Este código se deriva del código clásico de Hamming <span class="arithmatex">\([7,4,3]\)</span> utilizado en el capítulo anterior. </p>
+<p>Ejecuta este <em>script</em> en tu entorno para generar las matrices y comprobar matemáticamente por qué este código admite una estructura de grupo estabilizador válido.</p>
+<pre><code class="language-python">import numpy as np
+
+# Para el código de Steane [[7, 1, 3]], utilizamos la matriz de paridad
+# del código de Hamming [7, 4, 3] tanto para los errores X como para los Z.
+# Esto asegura que el código resultante sea simétrico.
+
+H_hamming = np.array([
+    [1, 0, 0, 1, 0, 1, 1],
+    [0, 1, 0, 1, 1, 0, 1],
+    [0, 0, 1, 0, 1, 1, 1]
+])
+
+# En la construcción CSS, H_X y H_Z provienen de códigos clásicos
+H_X = H_hamming
+H_Z = H_hamming
+
+print(&quot;=== Parámetros Básicos del Código CSS ===&quot;)
+n = H_X.shape[1]
+k_X = n - np.linalg.matrix_rank(H_X) # Qubits de información del código clásico C_X
+k_Z = n - np.linalg.matrix_rank(H_Z) # Qubits de información del código clásico C_Z
+k_logical = k_X + k_Z - n            # Dimensión cuántica del código CSS
+
+print(f&quot;Número de qubits físicos (n): {n}&quot;)
+print(f&quot;Número de qubits lógicos (k): {k_logical}&quot;)
+print(f&quot;Número de generadores X: {H_X.shape[0]}&quot;)
+print(f&quot;Número de generadores Z: {H_Z.shape[0]}&quot;)
+
+# Verificación de la condición fundamental CSS (Ortogonalidad)
+# Si H_X * H_Z^T (mod 2) no es cero, los estabilizadores X y Z no conmutarían.
+conmutatividad_check = np.dot(H_X, H_Z.T) % 2
+
+print(&quot;\n=== Verificación de Conmutatividad (H_X * H_Z^T mod 2) ===&quot;)
+print(conmutatividad_check)
+
+if np.all(conmutatividad_check == 0):
+    print(&quot;\n[ÉXITO] La matriz resultante es nula. Los estabilizadores X y Z conmutan.&quot;)
+    print(&quot;El código cuántico CSS está bien definido matemáticamente.&quot;)
+else:
+    print(&quot;\n[ERROR] Las matrices no son ortogonales. El subgrupo no es abeliano.&quot;)
+
+# Visualización de un estabilizador
+def matriz_a_pauli(fila, tipo):
+    return &quot;&quot;.join([tipo if bit == 1 else &quot;I&quot; for bit in fila])
+
+print(&quot;\n=== Generadores del Grupo Estabilizador ===&quot;)
+for i, fila in enumerate(H_X):
+    print(f&quot;Generador X_{i+1}: {matriz_a_pauli(fila, 'X')}&quot;)
+for i, fila in enumerate(H_Z):
+    print(f&quot;Generador Z_{i+1}: {matriz_a_pauli(fila, 'Z')}&quot;)
+
+</code></pre>
+<h3 id="referencias-bibliograficas">Referencias bibliográficas</h3>
+<p>Dennis, E., Kitaev, A., Landahl, A., &amp; Preskill, J. (2002). "Topological quantum memory", Journal of Mathematical Physics, 43, 4452–4505.
+Gottesman, D. (2010). "An introduction to quantum error correction and fault-tolerant quantum computation", en Quantum Information Science and Its Contributions to Mathematics.
+Kitaev, A. Y. (2003). "Fault-tolerant quantum computation by anyons", Annals of Physics, 303, 2–30.
+Nielsen, M. A., &amp; Chuang, I. L. (2010). Quantum Computation and Quantum Information, Cambridge University Press.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.follow", "toc.integrate", "navigation.sections", "navigation.top", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
