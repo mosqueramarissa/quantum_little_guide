@@ -31,7 +31,6 @@ nav:
       - Descripción de la estancia: investigacion/estancia.md
 
   - Preliminares:
-      - Some mathematical preliminaries: preliminares/index.md
       - 0.1 Complex numbers: preliminares/01_complex_numbers.md
       - 0.2 Euclidean vectors and vector spaces: preliminares/02_euclidean_vectors.md
       - 0.3 Bras and kets: preliminares/03_bras_and_kets.md
@@ -46,9 +45,22 @@ nav:
 
   - Metodología:
       - Metodología: metodologia/index.md
+      - 
 
   - Capítulos:
       - Capítulos: capitulos/index.md
+      - 1 Qubits, superposición y entrelazamiento: capitulos/1_qubits.md
+      - 2 Compuertas cuánticas y la fragilidad de la información: capitulos/2_quantum_gates.md
+      - 3 Códigos clásicos y álgebra lineal binaria: capitulos/3_classic_codes.md
+      - 4 El formalismo estabilizador y la extracción de síndromes: capitulos/4_stabilizers.md
+      - 5 Códigos CSS y la generación de códigos de superficie: capitulos/5_css_codes.md
+      - 6 Grafos de Tanner y la topología de la incidencia: capitulos/6_tanner_graphs.md
+      - 7 La familia de códigos qLDPC y el producto de hipergrafos: capitulos/7_family_of_qLDPC_codes.md
+      - 8 Grafos de interacción física y arquitecturas de hardware: capitulos/8_physics_interaction_graphs.md
+      - 9 Embeddings heurísticos, Estrategias de colocación de qubits: capitulos/9_heuristics_embeddings.md
+      - 10 Enrutamiento mediante compuertas SWAP y la sobrecarga de conectividad: capitulos/10_SWAP_gates.md
+      - 11 Propagación de errores en simulaciones y análisis final: docs/capitulos/11_error_in_simulations.md
+
 
   - Resultados:
       - Resultados: resultados/index.md
