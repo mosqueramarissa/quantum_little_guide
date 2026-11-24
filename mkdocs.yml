@@ -4,24 +4,40 @@ site_author: Gabriela Marissa Mosquera Orellana
 
 theme:
   name: material
+  font:
+    text: Plus Jakarta Sans
+    code: JetBrains Mono
+  palette:
+    scheme: default
+    primary: custom
+    accent: custom
   features:
     - toc.follow
-    - toc.integrate
+    - navigation.tracking
     - navigation.sections
     - navigation.top
     - content.code.copy
+    - content.tabs.link
 
 plugins:
   - search
   - mkdocs-jupyter
 
 markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.arithmatex:
       generic: true
 
+extra_css:
+  - stylesheets/extra.css
+
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
+:
 nav:
   - Inicio: index.md
  
