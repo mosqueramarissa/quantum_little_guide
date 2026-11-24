@@ -1,0 +1,74 @@
+:root {
+  /* Fondo cálido muy sutil y texto oscuro tipo espresso */
+  --md-default-bg-color: #FCFBF9;
+  --md-default-fg-color: #2D2622;
+  --md-default-fg-color--light: #6B5E57;
+
+  /* Encabezado limpio (sin azul, igual al fondo) */
+  --md-primary-fg-color: #FCFBF9;
+  --md-primary-bg-color: #2D2622;
+
+  /* Color de hipervínculos y acentos */
+  --md-typeset-a-color: #A23E48;
+  --md-accent-fg-color: #A23E48;
+}
+
+/* Encabezado minimalista con línea inferior sutil */
+.md-header {
+  background-color: #FCFBF9;
+  color: #2D2622;
+  box-shadow: none;
+  border-bottom: 1px solid #EAE4DC;
+}
+
+/* Buscador integrado al fondo cálido */
+.md-search__form {
+  background-color: #F3EFEA;
+  color: #2D2622;
+}
+.md-search__input::placeholder {
+  color: #7A6F68;
+}
+
+/* Hipervínculos en negrita y color #A23E48 */
+.md-typeset a {
+  color: #A23E48;
+  font-weight: 600;
+  text-decoration: none;
+}
+.md-typeset a:hover {
+  text-decoration: underline;
+}
+
+/* Negritas (strong) con un tono cálido distinto */
+.md-typeset strong {
+  color: #6E2B26;
+}
+
+/* Títulos con la misma letra pero jerarquía cálida */
+.md-typeset h1, .md-typeset h2, .md-typeset h3 {
+  color: #241E1B;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Índice derecho (TOC) más pequeño y discreto */
+.md-sidebar--secondary {
+  font-size: 0.72rem;
+}
+.md-nav--secondary .md-nav__link--active {
+  color: #A23E48;
+  font-weight: 600;
+}
+
+/* Cajas de definiciones (admonitions) en tonos cálidos */
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-color: #D4A373;
+  background-color: #FAF5EE;
+}
+.md-typeset .note > .admonition-title,
+.md-typeset .note > summary {
+  background-color: rgba(212, 163, 115, 0.15);
+  color: #5C3D2E;
+}

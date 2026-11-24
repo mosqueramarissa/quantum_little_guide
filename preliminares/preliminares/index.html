@@ -1,0 +1,1565 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Bitácora de aprendizaje sobre Quantum Computing y Error Correction">
+      
+      
+        <meta name="author" content="Gabriela Marissa Mosquera Orellana">
+      
+      
+      
+      
+        <link rel="next" href="../../capitulos/1_qubits/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Preliminares - Quantum little guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Plus Jakarta Sans";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#preliminares" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Quantum little guide" class="md-header__button md-logo" aria-label="Quantum little guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Quantum little guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Preliminares
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Quantum little guide" class="md-nav__button md-logo" aria-label="Quantum little guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Quantum little guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preliminares
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Preliminares
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#01-complex-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 Complex numbers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02-euclidean-vectors-and-vector-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 Euclidean vectors and vector spaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#03-bras-and-kets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 Bras and kets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#04-daggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4 Daggers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#05-geometria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5 Geometría
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#06-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6 Operators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#07-eigenvalues-and-eigenvectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7 Eigenvalues and eigenvectors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#08-outer-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8 Outer products
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#09-the-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9 The trace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#010-some-useful-identities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10 Some useful identities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#011-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11 Probabilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.11 Probabilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias bibliográficas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capítulos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Capítulos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capitulos/1_qubits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 Qubits, superposición y entrelazamiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capitulos/2_quantum_gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 Compuertas cuánticas y la fragilidad de la información
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capitulos/3_classic_codes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 Códigos clásicos y álgebra lineal binaria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capitulos/4_stabilizers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 El formalismo estabilizador y la extracción de síndromes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capitulos/5_css_codes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 Códigos CSS y la generación de códigos de superficie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capitulos/6_tanner_graphs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 Grafos de Tanner y la topología de la incidencia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capitulos/7_family_of_qLDPC_codes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 La familia de códigos qLDPC y el producto de hipergrafos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capitulos/8_physics_interaction_graphs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 Grafos de interacción física y arquitecturas de hardware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capitulos/9_heuristics_embeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9 Embeddings heurísticos, Estrategias de colocación de qubits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capitulos/10_SWAP_gates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 Enrutamiento mediante compuertas SWAP y la sobrecarga de conectividad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/capitulos/11_error_in_simulations.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 Propagación de errores en simulaciones y análisis final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../resultados/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resultados
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resultados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../conclusiones/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conclusiones
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conclusiones
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../recursos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Recursos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docs/glosario.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glosario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#01-complex-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 Complex numbers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02-euclidean-vectors-and-vector-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 Euclidean vectors and vector spaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#03-bras-and-kets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 Bras and kets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#04-daggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4 Daggers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#05-geometria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5 Geometría
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#06-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6 Operators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#07-eigenvalues-and-eigenvectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7 Eigenvalues and eigenvectors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#08-outer-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8 Outer products
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#09-the-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9 The trace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#010-some-useful-identities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10 Some useful identities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#011-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11 Probabilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.11 Probabilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Referencias bibliográficas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="preliminares">Preliminares</h1>
+<h2 id="01-complex-numbers">0.1 Complex numbers</h2>
+<p>La mecánica cuántica se rige sobre el cuerpo de los números complejos, <span class="arithmatex">\(\mathbb{C}\)</span>. Un número complejo es la combinación de un número real con un imagainario. Mientras un número real es cualquier numéro que puedas pensar, como:</p>
+<div class="arithmatex">\[ 1, \quad 13.5, \quad -0.768, \quad \frac{3}{2}, \quad \sqrt{2}\]</div>
+<p>Los números imaginarios son aquellos que cuándo se elevan al cuadrado dan un resultado <em>negativo</em>. La unidad de un número imaginario es <span class="arithmatex">\(i\)</span></p>
+<div class="arithmatex">\[i = \sqrt{-1}\]</div>
+<p>Cuando elevamos <span class="arithmatex">\(i\)</span> al cudrado sucecede lo siguiente:</p>
+<div class="arithmatex">\[i^2 = -1\]</div>
+<p>Volviendo a los números complejo, así se ven,</p>
+<div class="arithmatex">\[ 1 + i, \quad 43 + 2i, \quad 0.95 - 3.2i, \quad -2 + \pi i\]</div>
+<p>Entonces, ya tenemos nuestra primera definición:</p>
+<div class="arithmatex">\[z = a + bi\]</div>
+<p>Donde <span class="arithmatex">\(a, b \in \mathbb{R}\)</span>. La letra <span class="arithmatex">\(z\)</span> es usada a menudo para representar a los números complejos. Nos referirimos a la parte real y a la imaginaria usando <strong>Re</strong> e <strong>Im</strong> de esta manera:
+$<span class="arithmatex">\(\begin{align*}
+    Re(z) &amp;= a
+    Im(z) &amp;= b
+\begin{align*}\)</span>$</p>
+<p>Una herramienta fundamental en la computación cuántica es el conjugado complejo, denotado como <span class="arithmatex">\(z^*\)</span>, el cual invierte el signo de la parte imaginaria.</p>
+<div class="arithmatex">\[z^* = x - bi\]</div>
+<p>El módulo (también denominada magnitud) al cuadrado de un número complejo nos permite calcular probabilidades en sistemas cuánticos, y se define como el producto del número por su conjugado complejo:</p>
+<div class="arithmatex">\[|z|^2 = z z^* = x^2 + y^2\]</div>
+<p>También es común representar los números complejos en su forma polar, usando la fórmula de Euler (<span class="arithmatex">\(e^{i\theta} = \cos\theta + i\sin\theta\)</span>):</p>
+<div class="arithmatex">\[z = r e^{i\theta}\]</div>
+<p>Donde <span class="arithmatex">\(r = |z|\)</span> es la magnitud y <span class="arithmatex">\(\theta\)</span> es la fase. Las fases relativas entre estados cuánticos son responsables de fenómenos como la interferencia, la cual es base para los algoritmos cuánticos acelerados.</p>
+<hr />
+<h2 id="02-euclidean-vectors-and-vector-spaces">0.2 Euclidean vectors and vector spaces</h2>
+<p>Un espacio vectorial sobre los números complejos consiste en un conjunto de vectores donde están definidas las operaciones de suma y multiplicación por un escalar complejo. En información cuántica, trabajamos específicamente con espacios de Hilbert de dimensión finita, que son espacios vectoriales complejos dotados de un producto interno.</p>
+<p>Para definir un sistema, requerimos establecer una base. Los estados base son vectores linealmente independientes que componen el espacio vectorial de tal manera que cualquier vector del sistema puede ser expresado como una combinación lineal de ellos. Si un espacio tiene dimensión <span class="arithmatex">\(n\)</span>, una base estará conformada exactamente por <span class="arithmatex">\(n\)</span> vectores <span class="arithmatex">\(\{v_1, v_2, \dots, v_n\}\)</span>.</p>
+<p>Un vector genérico en el espacio puede escribirse como una matriz columna (en un espacio de dimensión 2, correspondiente a un qubit):</p>
+<div class="arithmatex">\[
+v = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}
+\]</div>
+<p><strong>Producto Interno y Ortogonalidad</strong>
+El producto interno (o escalar) toma dos vectores y produce un número complejo. Este define la geometría del espacio. Un concepto crucial geométrico y físico es la ortogonalidad: se dice que el producto interno de dos vectores es cero cuando estos son mutuamente excluyentes, es decir, son ortogonales. Si además tienen una magnitud (norma) igual a 1, forman un conjunto ortonormal.</p>
+<hr />
+<h2 id="03-bras-and-kets">0.3 Bras and kets</h2>
+<p>En computación e información cuántica, el estándar para representar estados es la notación de Dirac (o notación bra-ket). Esta notación simplifica el manejo del álgebra lineal en espacios de Hilbert.</p>
+<p>Un <strong>ket</strong>, denotado como <span class="arithmatex">\(|\psi\rangle\)</span>, representa un vector columna que describe el estado de un sistema cuántico en el espacio vectorial complejo <span class="arithmatex">\(\mathcal{H}\)</span>. Para un qubit, se expresa matricialmente como:</p>
+<div class="arithmatex">\[|\psi\rangle = \begin{pmatrix} \alpha \\ \beta \end{pmatrix}\]</div>
+<p>Todo espacio vectorial <span class="arithmatex">\(\mathcal{H}\)</span> tiene asociado un espacio dual <span class="arithmatex">\(\mathcal{H}^*\)</span>. Un <strong>bra</strong>, denotado como <span class="arithmatex">\(\langle\psi|\)</span>, pertenece a este espacio dual y representa un vector fila. Se obtiene tomando la transpuesta conjugada compleja del ket correspondiente:</p>
+<div class="arithmatex">\[\langle\psi| = \begin{pmatrix} \alpha^* &amp; \beta^* \end{pmatrix}\]</div>
+<p>La yuxtaposición de un bra y un ket forma un "bra-ket" <span class="arithmatex">\(\langle\phi|\psi\rangle\)</span>, el cual denota el producto interno (escalar) entre los estados <span class="arithmatex">\(|\phi\rangle\)</span> y <span class="arithmatex">\(|\psi\rangle\)</span>. El resultado de esta operación es un número complejo que representa la amplitud de probabilidad de que el estado <span class="arithmatex">\(|\psi\rangle\)</span> colapse al ser medido en el estado <span class="arithmatex">\(|\phi\rangle\)</span>.</p>
+<hr />
+<h2 id="04-daggers">0.4 Daggers</h2>
+<p>El operador "daga" (dagger), denotado por el símbolo <span class="arithmatex">\(\dagger\)</span>, es fundamental para conectar kets con bras y operadores con sus adjuntos. Matemáticamente, representa la operación de transposición conjugada (o adjunto hermitiano).</p>
+<p>Para cualquier matriz <span class="arithmatex">\(A\)</span>, su matriz adjunta <span class="arithmatex">\(A^\dagger\)</span> se define tomando la matriz transpuesta y aplicando el conjugado complejo a cada una de sus entradas:</p>
+<div class="arithmatex">\[A^\dagger = (A^T)^*\]</div>
+<p>Como se estableció en la notación de Dirac, aplicar la operación daga a un ket produce el bra correspondiente, y viceversa:</p>
+<div class="arithmatex">\[(|\psi\rangle)^\dagger = \langle\psi|$$
+$$(\langle\psi|)^\dagger = |\psi\rangle\]</div>
+<p><strong>Propiedades de la operación <span class="arithmatex">\(\dagger\)</span>:</strong>
+Al aplicar la operación daga sobre productos de matrices o vectores, el orden de los elementos se invierte. Para operadores <span class="arithmatex">\(A\)</span> y <span class="arithmatex">\(B\)</span>, y escalares complejos <span class="arithmatex">\(c\)</span>:
+* <span class="arithmatex">\((cA)^\dagger = c^* A^\dagger\)</span>
+* <span class="arithmatex">\((A B)^\dagger = B^\dagger A^\dagger\)</span>
+* <span class="arithmatex">\((A |\psi\rangle)^\dagger = \langle\psi| A^\dagger\)</span></p>
+<p>Esta operación es clave para definir operadores Hermitianos y matrices unitarias, los cuales son los bloques constructores de la evolución de sistemas cuánticos.</p>
+<hr />
+<h2 id="05-geometria">0.5 Geometría</h2>
+<p>La geometría de los espacios cuánticos se deriva de las propiedades del producto interno. A diferencia del espacio euclidiano clásico, la geometría cuántica abarca dimensiones complejas.</p>
+<p>Para un sistema de dos niveles (un solo qubit), la restricción de normalización (<span class="arithmatex">\(|\alpha|^2 + |\beta|^2 = 1\)</span>) y el hecho de que la fase global de un estado cuántico es inobservable (no afecta las probabilidades de medición), permiten parametrizar cualquier estado puro de un qubit usando dos ángulos reales, <span class="arithmatex">\(\theta\)</span> y <span class="arithmatex">\(\varphi\)</span>:</p>
+<div class="arithmatex">\[|\psi\rangle = \cos\left(\frac{\theta}{2}\right)|0\rangle + e^{i\varphi}\sin\left(\frac{\theta}{2}\right)|1\rangle\]</div>
+<p>Esta parametrización da lugar a la <strong>esfera de Bloch</strong>, una representación geométrica tridimensional donde todo estado puro corresponde a un punto en la superficie de una esfera unitaria. En esta geometría, la ortogonalidad tiene una representación visual peculiar: dos vectores ortogonales en el espacio de Hilbert complejo (donde <span class="arithmatex">\(\langle\phi|\psi\rangle = 0\)</span>) se representan como puntos antípodas en polos opuestos de la esfera de Bloch (por ejemplo, los estados <span class="arithmatex">\(|0\rangle\)</span> y <span class="arithmatex">\(|1\rangle\)</span>).</p>
+<p>El valor absoluto del producto interno al cuadrado, <span class="arithmatex">\(|\langle\phi|\psi\rangle|^2\)</span>, puede interpretarse geométricamente como la medida de la superposición (overlap) o la "cercanía" entre dos estados.</p>
+<hr />
+<h2 id="06-operators">0.6 Operators</h2>
+<p>En mecánica cuántica, los cambios y transformaciones sobre los estados de un sistema se describen mediante operadores lineales. Un operador lineal <span class="arithmatex">\(A\)</span> actúa sobre el espacio de Hilbert <span class="arithmatex">\(\mathcal{H}\)</span>, tomando un estado ket y mapeándolo a otro:</p>
+<div class="arithmatex">\[A|\psi\rangle = |\phi\rangle\]</div>
+<p>Matricialmente, si el espacio de estados tiene dimensión <span class="arithmatex">\(n\)</span>, el operador se representa como una matriz compleja de <span class="arithmatex">\(n \times n\)</span>. Existen dos clases de operadores que son de vital importancia en la información cuántica:</p>
+<p><strong>Operadores Unitarios (<span class="arithmatex">\(U\)</span>)</strong>
+Garantizan que la evolución de un sistema cuántico cerrado conserve la normalización de las probabilidades. Se definen por la propiedad de que su adjunto es igual a su inversa:</p>
+<div class="arithmatex">\[U^\dagger U = U U^\dagger = I\]</div>
+<p>Donde <span class="arithmatex">\(I\)</span> es la matriz identidad. Las compuertas cuánticas (como la compuerta Hadamard o Pauli-X) son, por definición, operadores unitarios.</p>
+<p><strong>Operadores Hermitianos (o Auto-adjuntos)</strong>
+Representan variables observables físicamente mensurables (como la energía, la posición, o el espín). Un operador <span class="arithmatex">\(H\)</span> es Hermitiano si es igual a su propio adjunto:</p>
+<div class="arithmatex">\[H = H^\dagger\]</div>
+<p>Esta propiedad asegura que los resultados de cualquier medición cuántica sean siempre valores reales.</p>
+<hr />
+<h2 id="07-eigenvalues-and-eigenvectors">0.7 Eigenvalues and eigenvectors</h2>
+<p>El análisis espectral de los operadores es el puente entre las matemáticas de los espacios vectoriales y los resultados de las mediciones cuánticas. </p>
+<p>Para un operador lineal <span class="arithmatex">\(A\)</span>, un vector no nulo <span class="arithmatex">\(|v\rangle\)</span> es un <strong>eigenvector</strong> (o vector propio) si, al aplicarle el operador, el vector resultante es solo un múltiplo escalar del original:</p>
+<div class="arithmatex">\[A|v\rangle = \lambda|v\rangle\]</div>
+<p>El escalar <span class="arithmatex">\(\lambda \in \mathbb{C}\)</span> es el <strong>eigenvalue</strong> (o valor propio) asociado a ese eigenvector.</p>
+<p>En el contexto físico de una medición cuántica descrita por un observable Hermitiano, los eigenvalores representan todos los posibles resultados deterministas numéricos de la medición, y siempre son números reales. Los eigenvectores representan los estados en los cuales colapsa el sistema inmediatamente después de ser medido.</p>
+<p>Por el teorema espectral, todo operador Hermitiano (así como todo operador unitario) es diagonalizable. Cuando una matriz es diagonalizable, existe una base de eigenvectores en la que dicha matriz toma una forma estrictamente diagonal. En esta representación específica, la diagonal de una matriz son sus eigenvalores, facilitando enormemente el cálculo de la evolución temporal y las probabilidades del sistema.</p>
+<p>--</p>
+<h2 id="08-outer-products">0.8 Outer products</h2>
+<p>Mientras que el producto interno (bra-ket, <span class="arithmatex">\(\langle\phi|\psi\rangle\)</span>) resulta en un escalar, el producto externo (ket-bra) resulta en un operador lineal. </p>
+<p>El producto externo entre un ket <span class="arithmatex">\(|\phi\rangle\)</span> y un bra <span class="arithmatex">\(\langle\psi|\)</span> se denota como:</p>
+<div class="arithmatex">\[|\phi\rangle\langle\psi|\]</div>
+<p>Para entender su funcionamiento, basta aplicarlo sobre un estado arbitrario <span class="arithmatex">\(|\chi\rangle\)</span>. Por asociatividad del álgebra, el resultado es el vector <span class="arithmatex">\(|\phi\rangle\)</span> escalado por el número complejo resultante del producto interno <span class="arithmatex">\(\langle\psi|\chi\rangle\)</span>:</p>
+<div class="arithmatex">\[(|\phi\rangle\langle\psi|)|\chi\rangle = |\phi\rangle(\langle\psi|\chi\rangle) = \langle\psi|\chi\rangle |\phi\rangle\]</div>
+<p><strong>Proyectores y Relación de Completitud</strong>
+Un caso fundamental del producto externo es el proyector ortogonal sobre el subespacio definido por un estado normalizado <span class="arithmatex">\(|\psi\rangle\)</span>, denotado como <span class="arithmatex">\(P = |\psi\rangle\langle\psi|\)</span>. </p>
+<p>Si tomamos un conjunto completo de estados base ortonormales <span class="arithmatex">\(\{|i\rangle\}\)</span>, la suma de sus productos externos forma la relación de completitud (o resolución de la identidad):</p>
+<div class="arithmatex">\[\sum_i |i\rangle\langle i| = I\]</div>
+<p>Esta identidad es una herramienta algebraica indispensable que se inserta frecuentemente entre operadores para simplificar expresiones o realizar cambios de base en mecánia cuántica.</p>
+<hr />
+<h2 id="09-the-trace">0.9 The trace</h2>
+<p>La traza de una matriz cuadrada <span class="arithmatex">\(A\)</span>, denotada como $    ext{Tr}(A)$, se define como la suma de los elementos de su diagonal principal. En notación de Dirac con respecto a una base ortonormal <span class="arithmatex">\(\{\vert{}i\rangle\}\)</span>:</p>
+<div class="arithmatex">\[  ext{Tr}(A) = \sum_i \langle i\vert{}A\vert{}i\rangle\]</div>
+<p>Una de las propiedades más importantes de la traza en la mecánica cuántica es su invarianza cíclica. Para matrices <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span> y <span class="arithmatex">\(C\)</span> (asumiendo que sus dimensiones permiten la multiplicación):</p>
+<div class="arithmatex">\[  ext{Tr}(ABC) =  ext{Tr}(CAB) =  ext{Tr}(BCA)\]</div>
+<p>Esta propiedad es especialmente útil al evaluar productos externos. La traza del producto externo entre un ket y un bra resulta ser igual a su producto interno:</p>
+<div class="arithmatex">\[  ext{Tr}(\vert{}\psi\rangle\langle\phi\vert{}) = \langle\phi\vert{}\psi\rangle\]</div>
+<p>La traza también es invariante bajo cambios de base (transformaciones unitarias), lo que significa que $    ext{Tr}(U A U^\dagger) =    ext{Tr}(A)$, haciendo de la traza una herramienta independiente del sistema de coordenadas elegido.</p>
+<hr />
+<h2 id="010-some-useful-identities">0.10 Some useful identities</h2>
+<p>El producto tensorial (<span class="arithmatex">\(\otimes\)</span>) es la operación matemática que nos permite unir varios sistemas cuánticos aislados. Al aplicar el producto tensorial, se multiplican las dimensiones de los qubits para formar un sistema compuesto más grande. Si tenemos un espacio <span class="arithmatex">\(\mathcal{H}_A\)</span> de dimensión <span class="arithmatex">\(n\)</span> y <span class="arithmatex">\(\mathcal{H}_B\)</span> de dimensión <span class="arithmatex">\(m\)</span>, el espacio compuesto <span class="arithmatex">\(\mathcal{H}_A \otimes \mathcal{H}_B\)</span> tiene dimensión <span class="arithmatex">\(nm\)</span>.</p>
+<p>Algunas identidades fundamentales para manipular operadores y estados compuestos son:</p>
+<ol>
+<li><strong>Distribución escalar:</strong> <span class="arithmatex">\(c(A \otimes B) = (cA) \otimes B = A \otimes (cB)\)</span></li>
+<li><strong>Producto mixto:</strong> Para operadores <span class="arithmatex">\(A, B, C, D\)</span>, se cumple que:
+   $<span class="arithmatex">\((A \otimes B)(C \otimes D) = (AC) \otimes (BD)\)</span>$</li>
+<li><strong>Aplicación sobre estados:</strong> Cuando operadores actúan sobre estados compuestos:
+   $<span class="arithmatex">\((A \otimes B)(\vert{}\psi\rangle \otimes \vert{}\phi\rangle) = (A\vert{}\psi\rangle) \otimes (B\vert{}\phi\rangle)\)</span>$</li>
+<li><strong>Adjunto y Traza del producto tensorial:</strong>
+   $<span class="arithmatex">\((A \otimes B)^\dagger = A^\dagger \otimes B^\dagger\)</span>$
+   $$   ext{Tr}(A \otimes B) =  ext{Tr}(A)  ext{Tr}(B)$$</li>
+</ol>
+<hr />
+<h2 id="011-probabilities">0.11 Probabilities</h2>
+<p>La conexión entre el formalismo matemático de la mecánica cuántica y el mundo físico observable se rige por la Regla de Born. </p>
+<p>Si medimos un estado cuántico <span class="arithmatex">\(\vert{}\psi\rangle\)</span> utilizando un conjunto de operadores de medición <span class="arithmatex">\(\{M_m\}\)</span>, donde <span class="arithmatex">\(m\)</span> denota los posibles resultados, la probabilidad de obtener el resultado <span class="arithmatex">\(m\)</span> está dada por:</p>
+<div class="arithmatex">\[p(m) = \langle\psi\vert{} M_m^\dagger M_m \vert{}\psi\rangle\]</div>
+<p>Para que estas probabilidades sean físicamente válidas, deben sumar a 1, lo que impone la condición de completitud sobre los operadores de medición: <span class="arithmatex">\(\sum_m M_m^\dagger M_m = I\)</span>.</p>
+<p>Si la medición se realiza sobre una base ortonormal específica, digamos <span class="arithmatex">\(\{\vert{}m\rangle\}\)</span>, los operadores son proyectores de la forma <span class="arithmatex">\(M_m = \vert{}m\rangle\langle m\vert{}\)</span>. La Regla de Born se reduce entonces a la amplitud de probabilidad al cuadrado:</p>
+<div class="arithmatex">\[p(m) = \vert{}\langle m\vert{}\psi\rangle\vert{}^2\]</div>
+<p>Finalmente, el valor esperado (o promedio estadístico) de un observable descrito por un operador Hermitiano <span class="arithmatex">\(A\)</span> sobre un estado <span class="arithmatex">\(\vert{}\psi\rangle\)</span> se calcula de forma compacta como:</p>
+<div class="arithmatex">\[\langle A \rangle = \langle\psi\vert{}A\vert{}\psi\rangle\]</div>
+<hr />
+<h3 id="referencias-bibliograficas">Referencias bibliográficas</h3>
+<ul>
+<li>Bloch, F. (1946). <em>Nuclear Induction</em>. Physical Review.</li>
+<li>Born, M. (1926). <em>Zur Quantenmechanik der Stoßvorgänge</em>. Zeitschrift für Physik.</li>
+<li>Dirac, P. A. M. (1958). <em>The Principles of Quantum Mechanics</em> (4th ed.). Oxford University Press.</li>
+<li>Halmos, P. R. (1958). <em>Finite-Dimensional Vector Spaces</em>. Springer. (Capítulo 2: Transformations).</li>
+<li>Kaye, P., Laflamme, R., &amp; Mosca, M. (2007). <em>An Introduction to Quantum Computing</em>. Oxford University Press. </li>
+<li>Nielsen, M. A., &amp; Chuang, I. L. (2010). <em>Quantum Computation and Quantum Information</em>. Cambridge University Press. </li>
+<li>Pierce, Rod. (2026). "Complex Numbers". Math Is Fun. Retrieved 22 Sep 2026 from https://www.mathsisfun.com/numbers/complex-numbers.html</li>
+<li>Rieffel, E. G., &amp; Polak, W. H. (2011). <em>Quantum Computing: A Gentle Introduction</em>. MIT Press. (Capítulo 2: Quantum Mechanics Basics).</li>
+<li>Shankar, R. (1994). <em>Principles of Quantum Mechanics</em> (2nd ed.). Springer. (Capítulo 1: Mathematical Introduction).</li>
+<li>Von Neumann, J. (1932). <em>Mathematical Foundations of Quantum Mechanics</em>. Princeton University Press. (Capítulo 2: Abstract Hilbert Space).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.follow", "navigation.indexes", "navigation.tracking", "navigation.sections", "navigation.top", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script data-mkdocs-jupyter-mathjax="{&quot;url&quot;: &quot;https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-mml-chtml.js&quot;, &quot;version&quot;: 4}">
+/* Shared by full pages and Material's instant navigation. */
+(() => {
+  const config = JSON.parse(document.currentScript.dataset.mkdocsJupyterMathjax);
+  if (window.mkdocsJupyterMathJax) return;
+
+  let loading;
+  let queue = Promise.resolve();
+  let previous = [];
+
+  const ready = async () => {
+    if (!loading) {
+      loading = (async () => {
+        let math = window.MathJax;
+        if (!math?.typesetPromise) {
+          const url = new URL(config.url, document.baseURI).href;
+          const existing = Array.from(document.scripts).find(script =>
+            script.src && (script.src === url || script.id === 'MathJax-script' ||
+              (/mathjax/i.test(script.src) &&
+               /\/(?:MathJax|latest|(?:tex|mml)(?:-mml)?-(?:chtml|svg))\.js(?:[?#]|$)/i.test(script.src))));
+          if (existing) {
+            if (!math?.startup?.promise) {
+              await new Promise((resolve, reject) => {
+                existing.addEventListener('load', resolve, { once: true });
+                existing.addEventListener('error', reject, { once: true });
+              });
+            }
+          } else {
+            // Keep site macros, delimiters and startup hooks when supplied.
+            const options = math || {};
+            window.MathJax = {
+              ...options,
+              loader: {
+                ...options.loader,
+                load: Array.from(new Set(['ui/safe', ...(options.loader?.load || [])]))
+              },
+              startup: { typeset: false, ...options.startup },
+              tex: {
+                tags: 'ams',
+                useLabelIds: true,
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true,
+                ...options.tex
+              }
+            };
+            await new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              script.src = config.url;
+              script.id = 'MathJax-script';
+              script.async = true;
+              script.onload = resolve;
+              script.onerror = reject;
+              document.head.appendChild(script);
+            });
+          }
+        }
+        math = window.MathJax;
+        await math.startup.promise;
+        return math;
+      })();
+    }
+    const math = await loading;
+    // A site owner can extend the v3 queue again on each navigation.
+    await math.startup.promise;
+    return math;
+  };
+
+  const unrendered = node => {
+    if (node.matches('mjx-container')) return [];
+    if (!node.querySelector('mjx-container')) return [node];
+    // In v3, scanning generated assistive MathML again produces nested output.
+    return Array.from(node.children).flatMap(unrendered);
+  };
+
+  const refresh = () => {
+    // A separate chain also serializes v3, without changing v4's startup promise.
+    queue = queue.then(async () => {
+      const notebooks = Array.from(document.querySelectorAll('.jupyter-wrapper'));
+      if (!notebooks.length && !previous.length) return;
+      if (notebooks.length === previous.length &&
+          notebooks.every((node, index) => node === previous[index])) return;
+      const math = await ready();
+      if (previous.length) {
+        math.typesetClear(previous);
+        math.texReset();
+      }
+      previous = notebooks.filter(node => node.isConnected);
+      const pending = previous.flatMap(unrendered);
+      if (pending.length) await math.typesetPromise(pending);
+    }).catch(error => console.error('mkdocs-jupyter: MathJax rendering failed', error));
+    return queue;
+  };
+
+  window.mkdocsJupyterMathJax = { refresh };
+  const start = () => {
+    if (typeof document$ !== 'undefined') document$.subscribe(refresh);
+    else refresh();
+  };
+  // Theme bundles and user-provided MathJax scripts can follow notebook content.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else start();
+})();
+
+</script>
+</body>
+</html>
