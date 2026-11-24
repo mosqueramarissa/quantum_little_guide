@@ -40,14 +40,10 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
-  - Inicio: index.md
+  - Inicio: docs/index.md
   
-  - Preliminares: 
-      - Preliminares: preliminares/preliminares.md
+  - Preliminares: preliminares/preliminares.md
 
-  - Metodología:
-      - Metodología: metodologia/index.md
- 
   - Capítulos:
       - 1 Qubits, superposición y entrelazamiento: capitulos/1_qubits.md
       - 2 Compuertas cuánticas y la fragilidad de la información: capitulos/2_quantum_gates.md
@@ -70,4 +66,4 @@ nav:
   - Recursos:
       - Recursos: recursos/index.md
   
-  - Glosario: glosario.md
+  - Glosario: docs/glosario.md
