@@ -41,14 +41,10 @@ extra_javascript:
 
 nav:
   - Inicio: index.md
- 
-  - Investigación:
-      - Investigación: investigacion/index.md
-      - Pregunta de investigación: investigacion/pregunta.md
-      - Descripción de la estancia: investigacion/estancia.md
- 
-  - Preliminares: preliminares/preliminares.md
-       
+  
+  - Preliminares: 
+      - Preliminares: preliminares/preliminares.md
+
   - Metodología:
       - Metodología: metodologia/index.md
  
