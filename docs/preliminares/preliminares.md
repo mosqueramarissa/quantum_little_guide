@@ -1,4 +1,5 @@
-# 0.1 Complex numbers
+# Preliminares
+## 0.1 Complex numbers
 
 La mecánica cuántica se rige sobre el cuerpo de los números complejos, $\mathbb{C}$. Un número complejo es la combinación de un número real con un imagainario. Mientras un número real es cualquier numéro que puedas pensar, como:
 
@@ -43,12 +44,7 @@ $$z = r e^{i\theta}$$
 Donde $r = |z|$ es la magnitud y $\theta$ es la fase. Las fases relativas entre estados cuánticos son responsables de fenómenos como la interferencia, la cual es base para los algoritmos cuánticos acelerados.
 
 ---
-### Referencias bibliográficas
-
-* Pierce, Rod. (2026). "Complex Numbers". Math Is Fun. Retrieved 22 Sep 2026 from https://www.mathsisfun.com/numbers/complex-numbers.html
-* Rieffel, E. G., & Polak, W. H. (2011). *Quantum Computing: A Gentle Introduction*. MIT Press. (Capítulo 2: Quantum Mechanics Basics).
-
-# 0.2 Euclidean vectors and vector spaces
+## 0.2 Euclidean vectors and vector spaces
 
 Un espacio vectorial sobre los números complejos consiste en un conjunto de vectores donde están definidas las operaciones de suma y multiplicación por un escalar complejo. En información cuántica, trabajamos específicamente con espacios de Hilbert de dimensión finita, que son espacios vectoriales complejos dotados de un producto interno.
 
@@ -64,12 +60,7 @@ $$
 El producto interno (o escalar) toma dos vectores y produce un número complejo. Este define la geometría del espacio. Un concepto crucial geométrico y físico es la ortogonalidad: se dice que el producto interno de dos vectores es cero cuando estos son mutuamente excluyentes, es decir, son ortogonales. Si además tienen una magnitud (norma) igual a 1, forman un conjunto ortonormal.
 
 ---
-### Referencias bibliográficas
-
-* Nielsen, M. A., & Chuang, I. L. (2010). *Quantum Computation and Quantum Information* (10th Anniversary ed.). Cambridge University Press. (Capítulo 2: Linear Algebra).
-
-
-# 0.3 Bras and kets
+## 0.3 Bras and kets
 
 En computación e información cuántica, el estándar para representar estados es la notación de Dirac (o notación bra-ket). Esta notación simplifica el manejo del álgebra lineal en espacios de Hilbert.
 
@@ -84,12 +75,7 @@ $$\langle\psi| = \begin{pmatrix} \alpha^* & \beta^* \end{pmatrix}$$
 La yuxtaposición de un bra y un ket forma un "bra-ket" $\langle\phi|\psi\rangle$, el cual denota el producto interno (escalar) entre los estados $|\phi\rangle$ y $|\psi\rangle$. El resultado de esta operación es un número complejo que representa la amplitud de probabilidad de que el estado $|\psi\rangle$ colapse al ser medido en el estado $|\phi\rangle$.
 
 ---
-### Referencias bibliográficas
-
-* Dirac, P. A. M. (1939). *A New Notation for Quantum Mechanics*. Mathematical Proceedings of the Cambridge Philosophical Society.
-* Nielsen, M. A., & Chuang, I. L. (2010). *Quantum Computation and Quantum Information* (10th Anniversary ed.). Cambridge University Press. (Capítulo 2: Linear Algebra).
-
-# 0.4 Daggers
+## 0.4 Daggers
 
 El operador "daga" (dagger), denotado por el símbolo $\dagger$, es fundamental para conectar kets con bras y operadores con sus adjuntos. Matemáticamente, representa la operación de transposición conjugada (o adjunto hermitiano).
 
@@ -111,12 +97,7 @@ Al aplicar la operación daga sobre productos de matrices o vectores, el orden d
 Esta operación es clave para definir operadores Hermitianos y matrices unitarias, los cuales son los bloques constructores de la evolución de sistemas cuánticos.
 
 ---
-### Referencias bibliográficas
-
-* Shankar, R. (1994). *Principles of Quantum Mechanics* (2nd ed.). Springer. (Capítulo 1: Mathematical Introduction).
-
-
-# 0.5 Geometría
+## 0.5 Geometría
 
 La geometría de los espacios cuánticos se deriva de las propiedades del producto interno. A diferencia del espacio euclidiano clásico, la geometría cuántica abarca dimensiones complejas.
 
@@ -129,13 +110,7 @@ Esta parametrización da lugar a la **esfera de Bloch**, una representación geo
 El valor absoluto del producto interno al cuadrado, $|\langle\phi|\psi\rangle|^2$, puede interpretarse geométricamente como la medida de la superposición (overlap) o la "cercanía" entre dos estados.
 
 ---
-### Referencias bibliográficas
-
-* Bloch, F. (1946). *Nuclear Induction*. Physical Review.
-* Nielsen, M. A., & Chuang, I. L. (2010). *Quantum Computation and Quantum Information* (10th Anniversary ed.). Cambridge University Press. (Capítulo 1: Introduction and Overview).
-
-
-# 0.6 Operators
+## 0.6 Operators
 
 En mecánica cuántica, los cambios y transformaciones sobre los estados de un sistema se describen mediante operadores lineales. Un operador lineal $A$ actúa sobre el espacio de Hilbert $\mathcal{H}$, tomando un estado ket y mapeándolo a otro:
 
@@ -158,11 +133,7 @@ $$H = H^\dagger$$
 Esta propiedad asegura que los resultados de cualquier medición cuántica sean siempre valores reales.
 
 ---
-### Referencias bibliográficas
-
-* Von Neumann, J. (1932). *Mathematical Foundations of Quantum Mechanics*. Princeton University Press. (Capítulo 2: Abstract Hilbert Space).
-
-# 0.7 Eigenvalues and eigenvectors
+## 0.7 Eigenvalues and eigenvectors
 
 El análisis espectral de los operadores es el puente entre las matemáticas de los espacios vectoriales y los resultados de las mediciones cuánticas. 
 
@@ -176,13 +147,8 @@ En el contexto físico de una medición cuántica descrita por un observable Her
 
 Por el teorema espectral, todo operador Hermitiano (así como todo operador unitario) es diagonalizable. Cuando una matriz es diagonalizable, existe una base de eigenvectores en la que dicha matriz toma una forma estrictamente diagonal. En esta representación específica, la diagonal de una matriz son sus eigenvalores, facilitando enormemente el cálculo de la evolución temporal y las probabilidades del sistema.
 
----
-### Referencias bibliográficas
-
-* Halmos, P. R. (1958). *Finite-Dimensional Vector Spaces*. Springer. (Capítulo 2: Transformations).
-* Nielsen, M. A., & Chuang, I. L. (2010). *Quantum Computation and Quantum Information* (10th Anniversary ed.). Cambridge University Press. (Capítulo 2: Linear Algebra).
-
-# 0.8 Outer products
+--
+## 0.8 Outer products
 
 Mientras que el producto interno (bra-ket, $\langle\phi|\psi\rangle$) resulta en un escalar, el producto externo (ket-bra) resulta en un operador lineal. 
 
@@ -204,10 +170,7 @@ $$\sum_i |i\rangle\langle i| = I$$
 Esta identidad es una herramienta algebraica indispensable que se inserta frecuentemente entre operadores para simplificar expresiones o realizar cambios de base en mecánia cuántica.
 
 ---
-### Referencias bibliográficas
-* Dirac, P. A. M. (1958). *The Principles of Quantum Mechanics* (4th ed.). Oxford University Press.
-
-# 0.9 The trace
+## 0.9 The trace
 
 La traza de una matriz cuadrada $A$, denotada como $	ext{Tr}(A)$, se define como la suma de los elementos de su diagonal principal. En notación de Dirac con respecto a una base ortonormal $\{\vert{}i\rangle\}$:
 
@@ -224,10 +187,7 @@ $$	ext{Tr}(\vert{}\psi\rangle\langle\phi\vert{}) = \langle\phi\vert{}\psi\rangle
 La traza también es invariante bajo cambios de base (transformaciones unitarias), lo que significa que $	ext{Tr}(U A U^\dagger) = 	ext{Tr}(A)$, haciendo de la traza una herramienta independiente del sistema de coordenadas elegido.
 
 ---
-### Referencias bibliográficas
-* Nielsen, M. A., & Chuang, I. L. (2010). *Quantum Computation and Quantum Information*. Cambridge University Press. (Capítulo 2: Linear Algebra).
-
-# 0.10 Some useful identities
+## 0.10 Some useful identities
 
 El producto tensorial ($\otimes$) es la operación matemática que nos permite unir varios sistemas cuánticos aislados. Al aplicar el producto tensorial, se multiplican las dimensiones de los qubits para formar un sistema compuesto más grande. Si tenemos un espacio $\mathcal{H}_A$ de dimensión $n$ y $\mathcal{H}_B$ de dimensión $m$, el espacio compuesto $\mathcal{H}_A \otimes \mathcal{H}_B$ tiene dimensión $nm$.
 
@@ -243,10 +203,7 @@ Algunas identidades fundamentales para manipular operadores y estados compuestos
    $$	ext{Tr}(A \otimes B) = 	ext{Tr}(A)	ext{Tr}(B)$$
 
 ---
-### Referencias bibliográficas
-* Kaye, P., Laflamme, R., & Mosca, M. (2007). *An Introduction to Quantum Computing*. Oxford University Press. (Capítulo 2: The Quantum Mechanics of Qubit Systems).
-
-# 0.11 Probabilities
+## 0.11 Probabilities
 
 La conexión entre el formalismo matemático de la mecánica cuántica y el mundo físico observable se rige por la Regla de Born. 
 
@@ -266,5 +223,13 @@ $$\langle A \rangle = \langle\psi\vert{}A\vert{}\psi\rangle$$
 
 ---
 ### Referencias bibliográficas
+* Bloch, F. (1946). *Nuclear Induction*. Physical Review.
 * Born, M. (1926). *Zur Quantenmechanik der Stoßvorgänge*. Zeitschrift für Physik.
-* Nielsen, M. A., & Chuang, I. L. (2010). *Quantum Computation and Quantum Information*. Cambridge University Press. (Capítulo 2: Postulates of Quantum Mechanics).
+* Dirac, P. A. M. (1958). *The Principles of Quantum Mechanics* (4th ed.). Oxford University Press.
+* Halmos, P. R. (1958). *Finite-Dimensional Vector Spaces*. Springer. (Capítulo 2: Transformations).
+* Kaye, P., Laflamme, R., & Mosca, M. (2007). *An Introduction to Quantum Computing*. Oxford University Press. 
+* Nielsen, M. A., & Chuang, I. L. (2010). *Quantum Computation and Quantum Information*. Cambridge University Press. 
+* Pierce, Rod. (2026). "Complex Numbers". Math Is Fun. Retrieved 22 Sep 2026 from https://www.mathsisfun.com/numbers/complex-numbers.html
+* Rieffel, E. G., & Polak, W. H. (2011). *Quantum Computing: A Gentle Introduction*. MIT Press. (Capítulo 2: Quantum Mechanics Basics).
+* Shankar, R. (1994). *Principles of Quantum Mechanics* (2nd ed.). Springer. (Capítulo 1: Mathematical Introduction).
+* Von Neumann, J. (1932). *Mathematical Foundations of Quantum Mechanics*. Princeton University Press. (Capítulo 2: Abstract Hilbert Space).
